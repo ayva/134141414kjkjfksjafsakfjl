@@ -4,13 +4,9 @@ class Weapon
   attr_reader :name, :damage
   
   def initialize(name="Name", damage)
-    #@weapon
     @name=name
     @damage=damage
-
   end
-
-
 
 end
 
@@ -42,7 +38,7 @@ class BattleBot
   def attack(bot2)
     raise "No weapon" if @weapon == nil
     raise ArgumentError unless bot2.class == BattleBot
-    enemies_count(bot2)
+    bot2.enemies_count(self)
     bot2.take_damage(weapon.damage)
     bot2.dead?
     
@@ -58,7 +54,7 @@ class BattleBot
 
   def enemies_count(bot)
     
-      @enemies << bot
+      @enemies << bot unless @enemies.include? (bot)
     
   end 
 
